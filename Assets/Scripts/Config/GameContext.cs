@@ -13,6 +13,10 @@ public class GameContext : MVCSContext
     protected override void mapBindings()
     {
         injectionBinder.Bind<IGameModel>().To<GameModel>().ToSingleton();
+
+        injectionBinder.Bind<StartSignal>().ToSingleton();
+
+        commandBinder.Bind<StartSignal>().To<StartCommand>();
     }
 
     protected override void addCoreComponents()
@@ -25,6 +29,7 @@ public class GameContext : MVCSContext
     public override void Launch()
     {
         base.Launch();
-        
+        StartSignal startSignal = injectionBinder.GetInstance<StartSignal>();
+        startSignal.Dispatch();
     }
 }
