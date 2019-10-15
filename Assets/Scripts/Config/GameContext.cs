@@ -15,8 +15,13 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<IGameModel>().To<GameModel>().ToSingleton();
 
         injectionBinder.Bind<StartSignal>().ToSingleton();
+        injectionBinder.Bind<MoveAxisSignal>().ToSingleton();
+        injectionBinder.Bind<LookAxisSignal>().ToSingleton();
+        injectionBinder.Bind<FireButtonSignal>().ToSingleton();
 
         commandBinder.Bind<StartSignal>().To<StartCommand>();
+
+        mediationBinder.Bind<InputView>().To<InputViewMediator>();
     }
 
     protected override void addCoreComponents()
