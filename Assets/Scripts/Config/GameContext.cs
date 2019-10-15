@@ -12,7 +12,7 @@ public class GameContext : MVCSContext
 
     protected override void mapBindings()
     {
-        
+        injectionBinder.Bind<IGameModel>().To<GameModel>().ToSingleton();
     }
 
     protected override void addCoreComponents()
