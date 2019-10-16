@@ -27,6 +27,7 @@ public class GameContext : MVCSContext
 
         mediationBinder.Bind<InputView>().To<InputViewMediator>();
         mediationBinder.Bind<PlayerView>().To<PlayerViewMediator>();
+        mediationBinder.Bind<EnemyView>().To<EnemyViewMediator>();
     }
 
     protected override void addCoreComponents()

@@ -96,8 +96,8 @@ public class PlayerView : View
         }
     }
 
-    public void OnEnemyKilled(EnemyType type) {
-        if (Health > 0)
+    public void OnEnemyKilled(EnemyType type, bool addPoints) {
+        if (Health > 0 && addPoints)
         {
             switch (type)
             {
