@@ -10,8 +10,12 @@ public class EnemyView : View
 
     [SerializeField] int fullHealth;   
     [SerializeField] EnemyType type;
+    [SerializeField] WeaponController weaponController;
 
     private int health;
+
+    [Inject]
+    public IProjectileFactory ProjectileFactory { get; set; }
 
     public int Health
     {
@@ -31,9 +35,13 @@ public class EnemyView : View
         }
     }
 
-    protected override void OnEnable()
+    protected override void Start()
     {
         Health = fullHealth;
+        if (weaponController != null) {
+            weaponController.Init(ProjectileFactory);
+            weaponController.Fire = true;
+        }
     }
 
     public void TakeDamage(int damage)

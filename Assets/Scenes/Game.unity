@@ -847,7 +847,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1440579153}
   m_Father: {fileID: 1375209282}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -976,6 +977,53 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 548855092}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &593761951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593761952}
+  - component: {fileID: 593761953}
+  m_Layer: 0
+  m_Name: ProjectileFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &593761952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593761951}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1498221122}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &593761953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593761951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b60c0ce4b7d914d94c89016d2400f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardProjectilePref: {fileID: 1990918549264412770, guid: 9c2e306c4074dc949b3ce2c7e4c166c7,
+    type: 3}
+  chaseProjectilePref: {fileID: 461635167821215596, guid: fb5361bf6c4ae304e82855192abf4779,
+    type: 3}
 --- !u!4 &698978529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6393506396460160670, guid: 89f314292582bc8448584bc1494681f6,
@@ -1464,6 +1512,7 @@ GameObject:
   - component: {fileID: 1375209284}
   - component: {fileID: 1375209283}
   - component: {fileID: 1375209286}
+  - component: {fileID: 1375209279}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1471,6 +1520,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1375209279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375209278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa27ccacba8d67b4bbcbc3f9c0cc440b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0.2
+  shootPosition: {fileID: 1440579153}
 --- !u!23 &1375209280
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1564,7 +1627,7 @@ MonoBehaviour:
   redEnemyReward: 0
   playerMove: {fileID: 1375209283}
   mouseLook: {fileID: 1375209286}
-  weaponController: {fileID: 0}
+  weaponController: {fileID: 1375209279}
 --- !u!143 &1375209285
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1605,6 +1668,36 @@ MonoBehaviour:
   rollAngle: 10
   rollSpeed: 3
   defaultLookLimits: {x: -70, y: 80}
+--- !u!1 &1440579152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1440579153}
+  m_Layer: 0
+  m_Name: ShootPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1440579153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440579152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.92}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 534669905}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1498221121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,6 +1708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498221122}
   - component: {fileID: 1498221123}
+  - component: {fileID: 1498221124}
   m_Layer: 0
   m_Name: GameRoot
   m_TagString: Untagged
@@ -1639,6 +1733,7 @@ Transform:
   - {fileID: 698978529}
   - {fileID: 1375209282}
   - {fileID: 1264364796}
+  - {fileID: 593761952}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1654,6 +1749,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c917b4c7c7cbf645ade8ba3d34b7c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectReferences: {fileID: 1498221124}
+--- !u!114 &1498221124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498221121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e005450f852bd344f892db9a73097d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileFactory: {fileID: 593761953}
 --- !u!114 &1510015909 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
@@ -2167,6 +2276,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 2810919558647826553, guid: 9b0645972567cf54f943d71611b2972f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2810919558647826533, guid: 9b0645972567cf54f943d71611b2972f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2235,6 +2349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393506396460160674, guid: 89f314292582bc8448584bc1494681f6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6393506396460160670, guid: 89f314292582bc8448584bc1494681f6,
         type: 3}

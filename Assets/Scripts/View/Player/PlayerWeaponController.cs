@@ -6,6 +6,8 @@ public class PlayerWeaponController : WeaponController
 {
     protected override void Shoot()
     {
-        print("Player shoot");
+        ForwardProjectile projectile = projectileFactory.CreateProjectile(ProjectileType.FORWARD) as ForwardProjectile;
+        projectile.transform.position = shootPosition.position;
+        projectile.Launch(shootPosition.forward, Owner.PLAYER);
     }
 }

@@ -20,6 +20,9 @@ public class PlayerView : View
     private int energy;
     private bool fire;
 
+    [Inject]
+    public IProjectileFactory ProjectileFactory { get; set; }
+
     public int Health {
         get { return health; }
         set {
@@ -57,6 +60,7 @@ public class PlayerView : View
     {
         Health = fullHealth;
         Energy = startEnergy;
+        weaponController.Init(ProjectileFactory);
     }
 
     public void SetMoveAxis(Vector2 moveAxis) {

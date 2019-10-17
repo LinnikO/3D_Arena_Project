@@ -4,20 +4,29 @@ using UnityEngine;
 
 public abstract class WeaponController : MonoBehaviour
 {
-    [SerializeField] float cooldown;
+    [SerializeField]
+    protected float cooldown;
+    [SerializeField]
+    protected Transform shootPosition;
 
     private float shootTime;
 
     public bool Fire { get; set; }
+    public bool Initialized { get; private set; }
 
-    private void Start()
+    protected IProjectileFactory projectileFactory;
+
+    public void Init(IProjectileFactory projectileFactory)
     {
         shootTime = Time.time;
+        this.projectileFactory = projectileFactory;
+        Initialized = true;
     }
 
     private void Update()
     {
-        if (Fire && Time.time - shootTime >= cooldown) {
+        if (Initialized && Fire && Time.time - shootTime >= cooldown) {
+            shootTime = Time.time;
             Shoot();
         }
     }

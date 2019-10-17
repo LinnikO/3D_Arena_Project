@@ -6,13 +6,18 @@ using strange.extensions.context.api;
 
 public class GameContext : MVCSContext
 {
-    public GameContext(MonoBehaviour contextView, ContextStartupFlags flag) : base(contextView, flag)
-    {}
+    private ObjectReferences objectReferences;
+
+    public GameContext(MonoBehaviour contextView, ContextStartupFlags flag, ObjectReferences objectReferences) : base(contextView, flag)
+    {
+        this.objectReferences = objectReferences;
+    }
 
 
     protected override void mapBindings()
     {
         injectionBinder.Bind<IGameModel>().To<GameModel>().ToSingleton();
+        injectionBinder.Bind<IProjectileFactory>().To<ProjectileFactory>().ToValue(objectReferences.projectileFactory);
 
         injectionBinder.Bind<StartSignal>().ToSingleton();
         injectionBinder.Bind<MoveAxisSignal>().ToSingleton();

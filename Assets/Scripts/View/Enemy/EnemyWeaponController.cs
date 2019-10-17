@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class EnemyWeaponController : WeaponController
 {
-    private void Start()
-    {
-        Fire = true;
-    }
-
     protected override void Shoot()
-    {
-        print("Enemy shoot");
+    {       
+        ChaseProjectile projectile = projectileFactory.CreateProjectile(ProjectileType.CHASE) as ChaseProjectile;
+        projectile.transform.position = shootPosition.position;
+        Transform playerTransform = FindObjectOfType<PlayerView>().transform;
+        projectile.Launch(playerTransform, Owner.ENEMY);
     }
 }
