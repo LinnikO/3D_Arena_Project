@@ -11,7 +11,7 @@ public class FireButtonSignal : Signal<bool> { }
 
 public class UltimateButtonSignal : Signal { }
 
-public class EnemyKilledSignal : Signal<EnemyType, bool> { }
+public class EnemyKilledSignal : Signal<EnemyType, bool, bool> { }
 
 public class PlayerKilledSignal : Signal { }
 

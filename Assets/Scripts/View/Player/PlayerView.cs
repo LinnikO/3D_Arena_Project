@@ -11,7 +11,9 @@ public class PlayerView : View
     [SerializeField] int fullEnergy;
     [SerializeField] int startEnergy;
     [SerializeField] int blueEnemyReward;
+    [SerializeField] int blueRecochetEnemyReward;
     [SerializeField] int redEnemyReward;
+    [SerializeField] int redRecochetEnemyReward;
     [SerializeField] PlayerMove playerMove;
     [SerializeField] PlayerLook mouseLook;
     [SerializeField] WeaponController weaponController;
@@ -22,6 +24,10 @@ public class PlayerView : View
 
     [Inject]
     public IProjectileFactory ProjectileFactory { get; set; }
+
+    public int FullHealth {
+        get { return fullHealth; }
+    }
 
     public int Health {
         get { return health; }
@@ -100,17 +106,39 @@ public class PlayerView : View
         }
     }
 
-    public void OnEnemyKilled(EnemyType type, bool addPoints) {
+    public void OnEnemyKilled(EnemyType type, bool addPoints, bool afterRecochet) {
         if (Health > 0 && addPoints)
         {
-            switch (type)
+            if (afterRecochet)
             {
-                case EnemyType.BLUE:
-                    Energy += blueEnemyReward;
-                    break;
-                case EnemyType.RED:
-                    Energy += redEnemyReward;
-                    break;
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                {
+                    Health += fullHealth / 2;
+                }
+                else
+                {
+                    switch (type)
+                    {
+                        case EnemyType.BLUE:
+                            Energy += blueRecochetEnemyReward;
+                            break;
+                        case EnemyType.RED:
+                            Energy += redRecochetEnemyReward;
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                switch (type)
+                {
+                    case EnemyType.BLUE:
+                        Energy += blueEnemyReward;
+                        break;
+                    case EnemyType.RED:
+                        Energy += redEnemyReward;
+                        break;
+                }
             }
         }
     }

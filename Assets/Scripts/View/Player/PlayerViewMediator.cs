@@ -70,8 +70,8 @@ public class PlayerViewMediator : Mediator
         View.UseUltimate();
     }
 
-    private void OnEnemyKilled(EnemyType enemyType, bool addPoints) {
-        View.OnEnemyKilled(enemyType, addPoints);
+    private void OnEnemyKilled(EnemyType enemyType, bool addPoints, bool afterRecochet) {
+        View.OnEnemyKilled(enemyType, addPoints, afterRecochet);
     }
 
     private void OnPlayerKilled() {

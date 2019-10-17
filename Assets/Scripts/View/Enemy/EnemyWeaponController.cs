@@ -6,9 +6,9 @@ public class EnemyWeaponController : WeaponController
 {
     protected override void Shoot()
     {       
-        ChaseProjectile projectile = ProjectileFactory.CreateProjectile(ProjectileType.CHASE) as ChaseProjectile;
+        EnemyProjectile projectile = ProjectileFactory.CreateProjectile(ProjectileType.ENEMY) as EnemyProjectile;
         projectile.transform.position = shootPosition.position;
         Transform playerTransform = FindObjectOfType<PlayerView>().transform;
-        projectile.Launch(playerTransform, Owner.ENEMY);
+        projectile.Launch(playerTransform);
     }
 }

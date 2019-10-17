@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6393506396460160668}
   - component: {fileID: 6393506396460160669}
   - component: {fileID: 6393506396460160673}
+  - component: {fileID: 2554769258567960355}
   m_Layer: 0
   m_Name: Red
   m_TagString: Untagged
@@ -112,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullHealth: 50
   type: 1
+  weaponController: {fileID: 0}
 --- !u!114 &6393506396460160673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,3 +130,16 @@ MonoBehaviour:
   chaseSpeed: 5
   upDistance: 3
   idleTime: 2
+--- !u!114 &2554769258567960355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6393506396460160674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17171e886f774e44689ccb97de955000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
