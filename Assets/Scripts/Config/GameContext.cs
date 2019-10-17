@@ -18,6 +18,7 @@ public class GameContext : MVCSContext
     {
         injectionBinder.Bind<IGameModel>().To<GameModel>().ToSingleton();
         injectionBinder.Bind<IProjectileFactory>().To<ProjectileFactory>().ToValue(objectReferences.projectileFactory);
+        injectionBinder.Bind<IGameField>().To<GameField>().ToValue(objectReferences.gameField);
 
         injectionBinder.Bind<StartSignal>().ToSingleton();
         injectionBinder.Bind<MoveAxisSignal>().ToSingleton();

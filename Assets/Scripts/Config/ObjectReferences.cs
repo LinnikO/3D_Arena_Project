@@ -5,4 +5,5 @@ using UnityEngine;
 public class ObjectReferences : MonoBehaviour
 {
     public ProjectileFactory projectileFactory;
+    public GameField gameField;
 }

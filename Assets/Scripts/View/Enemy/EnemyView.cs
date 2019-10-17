@@ -7,6 +7,7 @@ using System;
 public class EnemyView : View
 {
     public event Action<EnemyType, bool> EnemyKilled;
+    public event Action<EnemyView> Destroyed;
 
     [SerializeField] int fullHealth;   
     [SerializeField] EnemyType type;
@@ -37,9 +38,9 @@ public class EnemyView : View
 
     protected override void Start()
     {
+        base.Start();
         Health = fullHealth;
-        if (weaponController != null) {
-            weaponController.Init(ProjectileFactory);
+        if (weaponController != null) {          
             weaponController.Fire = true;
         }
     }
@@ -64,5 +65,13 @@ public class EnemyView : View
             EnemyKilled(type, addPoints);
         }
         Destroy(this.gameObject);
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        if (Destroyed != null) {
+            Destroyed(this);
+        }
     }
 }

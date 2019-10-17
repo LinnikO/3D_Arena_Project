@@ -58,9 +58,9 @@ public class PlayerView : View
 
     protected override void Start()
     {
+        base.Start();
         Health = fullHealth;
-        Energy = startEnergy;
-        weaponController.Init(ProjectileFactory);
+        Energy = startEnergy;     
     }
 
     public void SetMoveAxis(Vector2 moveAxis) {

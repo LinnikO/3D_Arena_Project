@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿using strange.extensions.mediation.impl;
+using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : View
 {
     [SerializeField] float speed;
     [SerializeField] CharacterController characterController;
 
     private Vector3 moveDirection;
+
+    [Inject]
+    public IGameField GameField { get; set; }
 
     public void SetMoveDirection(Vector3 moveDirection)
     {
@@ -24,7 +28,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.tag == "Border")
         {
-            //Teleport player
+            transform.position = GameField.FindPlayerTeleportPosition();
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using strange.extensions.mediation.impl;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponController : MonoBehaviour
+public abstract class WeaponController : View
 {
     [SerializeField]
     protected float cooldown;
@@ -12,20 +13,21 @@ public abstract class WeaponController : MonoBehaviour
     private float shootTime;
 
     public bool Fire { get; set; }
-    public bool Initialized { get; private set; }
 
-    protected IProjectileFactory projectileFactory;
+    [Inject]
+    public IProjectileFactory ProjectileFactory { get; set; }
 
-    public void Init(IProjectileFactory projectileFactory)
+    [Inject]
+    public IGameField GameField { get; set; }
+
+    protected override void Start()
     {
-        shootTime = Time.time;
-        this.projectileFactory = projectileFactory;
-        Initialized = true;
+        shootTime = Time.time;           
     }
 
     private void Update()
     {
-        if (Initialized && Fire && Time.time - shootTime >= cooldown) {
+        if (Fire && Time.time - shootTime >= cooldown) {
             shootTime = Time.time;
             Shoot();
         }
