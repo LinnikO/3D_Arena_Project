@@ -50,7 +50,7 @@ public class PlayerView : View
         get { return energy; }
         set
         {
-            health = value;
+            energy = value;
             if (energy <= 0)
             {
                 energy = 0;

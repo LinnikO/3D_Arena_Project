@@ -17,11 +17,15 @@ public class InputViewMediator : Mediator
     [Inject]
     public FireButtonSignal FireButtonSignal { get; set; }
 
+    [Inject]
+    public UltimateButtonSignal UltimateButtonSignal { get; set; }
+
     public override void OnRegister()
     {
         View.MoveAxisChanged += OnMoveAxisChanged;
         View.LookAxisChanged += OnLootAxisChanged;
         View.FireButtonChanged += OnFireButtontChanged;
+        View.UltimateButtonPressed += OnUltimateButtonPressed;
     }
 
     public override void OnRemove()
@@ -29,6 +33,7 @@ public class InputViewMediator : Mediator
         View.MoveAxisChanged -= OnMoveAxisChanged;
         View.LookAxisChanged -= OnLootAxisChanged;
         View.FireButtonChanged -= OnFireButtontChanged;
+        View.UltimateButtonPressed -= OnUltimateButtonPressed;
     }
 
     private void OnMoveAxisChanged(Vector2 moveDirection) {
@@ -43,5 +48,9 @@ public class InputViewMediator : Mediator
         FireButtonSignal.Dispatch(pressed);
     }
 
- 
+    private void OnUltimateButtonPressed() {
+        UltimateButtonSignal.Dispatch();
+    }
+
+
 }

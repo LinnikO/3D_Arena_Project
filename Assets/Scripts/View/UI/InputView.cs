@@ -7,6 +7,8 @@ public class InputView : View
     public event Action<Vector2> MoveAxisChanged;
     public event Action<Vector2> LookAxisChanged;
     public event Action<bool> FireButtonChanged;
+    public event Action UltimateButtonPressed;
+
 
     [SerializeField] FixedJoystick joystick;
     [SerializeField] FixedTouchField touchField;
@@ -62,5 +64,11 @@ public class InputView : View
         MoveAxis = joystick.Direction;
         LookAxis = touchField.TouchDist;
         FireButtonPressed = fireButton.Pressed;
+    }
+
+    public void OnUltimateButtonPressed() {
+        if (UltimateButtonPressed != null) {
+            UltimateButtonPressed();
+        }
     }
 }
