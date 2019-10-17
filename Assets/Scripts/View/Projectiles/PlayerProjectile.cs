@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerProjectile : Projectile
 {
-    [SerializeField] int recochetDamage;
-
     private Vector3 direction;
     private bool recochet;
     private IGameField gameField;
@@ -26,34 +24,38 @@ public class PlayerProjectile : Projectile
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
-            EnemyView enemy = collision.transform.GetComponent<EnemyView>();
-            int damageToEnemy = afterRecochet ? recochetDamage : damage;
+            EnemyView enemy = other.transform.GetComponent<EnemyView>();
 
+            enemy.TakeDamage(damage, afterRecochet);
             if (recochet)
             {
-                enemy.TakeDamage(damageToEnemy, afterRecochet);
                 recochet = false;
                 afterRecochet = true;
-                MoveToNearestEnemy();
+                MoveToNearestEnemy(enemy);
             }
             else
             {
-                enemy.TakeDamage(damageToEnemy, afterRecochet);
                 Destroy(this.gameObject);
             }
         }
-        else if (collision.transform.tag == "Obstacle")
+        else if (other.tag == "Obstacle")
         {
             Destroy(this.gameObject);
         }
     }
 
-    private void MoveToNearestEnemy() {
-        Transform enemy = gameField.FindeNearestEnemy().transform;
-        direction = (enemy.position - transform.position).normalized;
+    private void MoveToNearestEnemy(EnemyView hitedEnemy) {
+        EnemyView enemy = gameField.FindeNearestEnemy(hitedEnemy);
+        if (enemy != null)
+        {
+            direction = (enemy.transform.position - transform.position).normalized;
+        }
+        else {
+            Destroy(this.gameObject);
+        }
     }
 }

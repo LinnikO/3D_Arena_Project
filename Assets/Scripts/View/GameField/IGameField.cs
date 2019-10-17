@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IGameField 
 {
-    EnemyView FindeNearestEnemy();
+    GameFieldInfo GameFieldInfo { get; }
+    EnemyView FindeNearestEnemy(EnemyView hitedEnemy);
     Vector3 FindPlayerTeleportPosition();
 }

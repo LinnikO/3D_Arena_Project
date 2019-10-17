@@ -9,17 +9,25 @@ public class GameField : MonoBehaviour, IGameField
     [SerializeField] EnemiesSpawner enemiesSpawner;
     [SerializeField] EnemyFactory enemyFactory;
 
+    public GameFieldInfo GameFieldInfo {
+        get { return gameFieldInfo; }
+    }
+
     private void Start()
     { 
         enemiesSpawner.Init(gameFieldInfo, enemyFactory);
     }
 
-    public EnemyView FindeNearestEnemy() {
+    public EnemyView FindeNearestEnemy(EnemyView hitedEnemy) {
         EnemyView nearestEnemy = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
         foreach (EnemyView enemy in enemiesSpawner.enemies)
         {
+            if (enemy == hitedEnemy) {
+                continue;
+            }
+
             Vector3 directionToTarget = enemy.transform.position - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
             if (dSqrToTarget < closestDistanceSqr)
@@ -33,10 +41,7 @@ public class GameField : MonoBehaviour, IGameField
     }
 
     public Vector3 FindPlayerTeleportPosition() {
-        float y = gameFieldInfo.center.y + 1f;
-        float x = gameFieldInfo.center.x + Random.Range(-gameFieldInfo.radius, gameFieldInfo.radius);
-        float z = gameFieldInfo.center.z + Random.Range(-gameFieldInfo.radius, gameFieldInfo.radius);
-        return new Vector3(x, y, z);
+        return gameFieldInfo.spawnPositions[Random.Range(0, gameFieldInfo.spawnPositions.Count)].position;
     }
 
 }

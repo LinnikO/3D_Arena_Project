@@ -17,17 +17,18 @@ public class EnemyProjectile : Projectile
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.tag == "Player")
+        if (other.tag == "Player")
         {
-            PlayerView player = collision.transform.GetComponent<PlayerView>();
+            PlayerView player = other.transform.GetComponent<PlayerView>();           
             player.TakeDamage(damage);
             Destroy(this.gameObject);
         }
-        else if (collision.transform.tag == "Obstacle")
+        else if (other.tag == "Obstacle")
         {
             Destroy(this.gameObject);
         }
     }
+
 }

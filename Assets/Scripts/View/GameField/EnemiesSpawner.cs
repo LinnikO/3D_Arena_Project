@@ -47,16 +47,15 @@ public class EnemiesSpawner : MonoBehaviour
 
         EnemyType enemyType = spawnedEnemies % 5 == 0 ? EnemyType.BLUE : EnemyType.RED;
         EnemyView enemy = enemyFactory.CreateEnemy(enemyType);
-        enemy.transform.position = GetRandomSpwanPosition();
+        enemy.transform.position = GetRandomSpwanPosition(enemy);
         enemy.Destroyed += OnEnemyDestroyed;
         enemies.Add(enemy);
     }
 
-    private Vector3 GetRandomSpwanPosition() {
-        float y = gameFieldInfo.center.y + 1f;
-        float x = gameFieldInfo.center.x + Random.Range(-gameFieldInfo.radius, gameFieldInfo.radius);
-        float z = gameFieldInfo.center.z + Random.Range(-gameFieldInfo.radius, gameFieldInfo.radius);
-        return new Vector3(x, y, z);
+    private Vector3 GetRandomSpwanPosition(EnemyView enemy) {
+        Vector3 position = gameFieldInfo.spawnPositions[Random.Range(0, gameFieldInfo.spawnPositions.Count)].position;
+        position.y = position.y + 0.3f;
+        return position;
     }
 
     private void OnEnemyDestroyed(EnemyView enemy)

@@ -13,6 +13,7 @@ public class RedEnemyMove : MonoBehaviour
     [SerializeField] float chaseSpeed;
     [SerializeField] float upDistance;
     [SerializeField] float idleTime;
+    [SerializeField] float destroyTime;
 
     private RedEnemyState state;
     private float startMoveUpY;
@@ -53,6 +54,7 @@ public class RedEnemyMove : MonoBehaviour
             case RedEnemyState.CHASE_PLAER:
                 Transform playerTransform = FindObjectOfType<PlayerView>().transform;
                 chaseDirection = (playerTransform.position - transform.position).normalized;
+                Destroy(this.gameObject, destroyTime);
                 break;           
         }
     }
@@ -73,18 +75,12 @@ public class RedEnemyMove : MonoBehaviour
 
     private void ChaseUpdate() {
         transform.Translate(chaseDirection * chaseSpeed * Time.deltaTime);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (state == RedEnemyState.CHASE_PLAER && collision.transform.tag != "Projectile") {
-            Destroy(this.gameObject);
-        }
-    }
+    }  
 
     private void OnTriggerEnter(Collider other)
     {
-        if (state == RedEnemyState.CHASE_PLAER && other.tag == "Border") {
+        if (state == RedEnemyState.CHASE_PLAER)
+        {
             Destroy(this.gameObject);
         }
     }

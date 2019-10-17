@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 461635167821215593}
   - component: {fileID: 461635167821215598}
   - component: {fileID: 8115982079097893602}
-  m_Layer: 0
-  m_Name: CahseProjectile
+  m_Layer: 10
+  m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461635167821215596}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

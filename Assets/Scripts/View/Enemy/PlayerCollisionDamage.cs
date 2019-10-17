@@ -6,10 +6,11 @@ public class PlayerCollisionDamage : MonoBehaviour
 {
     [SerializeField] int damage;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.tag == "Player") {
-            PlayerView player = collision.transform.GetComponent<PlayerView>();
+        if (other.tag == "Player")
+        {
+            PlayerView player = other.transform.GetComponent<PlayerView>();
             player.TakeDamage(damage);
         }
     }
