@@ -6,7 +6,9 @@ public class PlayerView : View
 {
     public event Action PlayerKilled;
     public event Action UltimateUsed;
- 
+    public event Action<int, int> HealthChanged;
+    public event Action<int, int> EnergyChanged;
+
     [SerializeField] int fullHealth;
     [SerializeField] int fullEnergy;
     [SerializeField] int startEnergy;
@@ -42,6 +44,7 @@ public class PlayerView : View
             {
                 health = fullHealth;
             }
+            OnHealthChanged();
         }
     }
 
@@ -59,6 +62,7 @@ public class PlayerView : View
             {
                 energy = fullEnergy;
             }
+            OnEnergyChanged();
         }
     }
 
@@ -152,6 +156,18 @@ public class PlayerView : View
         if (PlayerKilled != null)
         {
             PlayerKilled();
+        }
+    }
+
+    private void OnHealthChanged() {
+        if (HealthChanged != null) {
+            HealthChanged(health, fullHealth);
+        }
+    }
+
+    private void OnEnergyChanged() {
+        if (EnergyChanged != null) {
+            EnergyChanged(energy, fullEnergy);
         }
     }
 }

@@ -34,6 +34,8 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<PauseButtonSignal>().ToSingleton();
         injectionBinder.Bind<ShowPauseSignal>().ToSingleton();
         injectionBinder.Bind<PauseClosedSignal>().ToSingleton();
+        injectionBinder.Bind<HealthChangedSignal>().ToSingleton();
+        injectionBinder.Bind<EnergyChangedSignal>().ToSingleton();
 
         commandBinder.Bind<StartSignal>().To<StartCommand>();
         commandBinder.Bind<PlayerKilledSignal>().To<GameOverCommand>();
@@ -50,6 +52,8 @@ public class GameContext : MVCSContext
         mediationBinder.Bind<GameOverView>().To<GameOverViewMediator>();
         mediationBinder.Bind<PauseButtonView>().To<PauseButtonMediator>();
         mediationBinder.Bind<PauseView>().To<PauseViewMediator>();
+        mediationBinder.Bind<HealthView>().To<HealthViewMediator>();
+        mediationBinder.Bind<EnergyView>().To<EnergyViewMediator>();
     }
 
     protected override void addCoreComponents()

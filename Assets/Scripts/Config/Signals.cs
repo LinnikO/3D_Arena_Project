@@ -28,3 +28,9 @@ public class PauseButtonSignal : Signal { }
 public class ShowPauseSignal : Signal<int> { }
 
 public class PauseClosedSignal : Signal { }
+
+public class HealthChangedSignal : Signal<int, int> { }
+
+public class EnergyChangedSignal : Signal<int, int> { }
+
+

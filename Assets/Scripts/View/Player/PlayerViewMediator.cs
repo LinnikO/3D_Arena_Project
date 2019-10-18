@@ -29,6 +29,12 @@ public class PlayerViewMediator : Mediator
     [Inject]
     public UltimateUsedSignal UltimateUsedSignal { get; set; }
 
+    [Inject]
+    public HealthChangedSignal HealthChangedSignal { get; set; }
+
+    [Inject]
+    public EnergyChangedSignal EnergyChangedSignal { get; set; }
+
     public override void OnRegister()
     {
         MoveAxisSignal.AddListener(OnMoveAxisSignal);
@@ -38,6 +44,8 @@ public class PlayerViewMediator : Mediator
         EnemyKilledSignal.AddListener(OnEnemyKilled);
         View.PlayerKilled += OnPlayerKilled;
         View.UltimateUsed += OnUltimateUsed;
+        View.HealthChanged += OnHealthchanged;
+        View.EnergyChanged += OnEnergyChanged;
     }
 
     public override void OnRemove()
@@ -49,6 +57,8 @@ public class PlayerViewMediator : Mediator
         EnemyKilledSignal.RemoveListener(OnEnemyKilled);
         View.PlayerKilled -= OnPlayerKilled;
         View.UltimateUsed -= OnUltimateUsed;
+        View.HealthChanged -= OnHealthchanged;
+        View.EnergyChanged -= OnEnergyChanged;
     }
 
     private void OnMoveAxisSignal(Vector2 moveDirection)
@@ -80,6 +90,14 @@ public class PlayerViewMediator : Mediator
 
     private void OnUltimateUsed() {
         UltimateUsedSignal.Dispatch();
+    }
+
+    public void OnHealthchanged(int health, int fullHealth) {
+        HealthChangedSignal.Dispatch(health, fullHealth);
+    }
+
+    private void OnEnergyChanged(int energy, int fullEnergy) {
+        EnergyChangedSignal.Dispatch(energy, fullEnergy);
     }
 
 }
