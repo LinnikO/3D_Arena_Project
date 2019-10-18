@@ -106,39 +106,41 @@ public class PlayerView : View
         }
     }
 
-    public void OnEnemyKilled(EnemyType type, bool addPoints, bool afterRecochet) {
-        if (Health > 0 && addPoints)
+    public void OnEnemyKilled(EnemyType type, bool afterRecochet) {
+        if (Health == 0)
         {
-            if (afterRecochet)
+            return;
+        }
+
+        if (afterRecochet)
+        {
+            if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
             {
-                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
-                {
-                    Health += fullHealth / 2;
-                }
-                else
-                {
-                    switch (type)
-                    {
-                        case EnemyType.BLUE:
-                            Energy += blueRecochetEnemyReward;
-                            break;
-                        case EnemyType.RED:
-                            Energy += redRecochetEnemyReward;
-                            break;
-                    }
-                }
+                Health += fullHealth / 2;
             }
             else
             {
                 switch (type)
                 {
                     case EnemyType.BLUE:
-                        Energy += blueEnemyReward;
+                        Energy += blueRecochetEnemyReward;
                         break;
                     case EnemyType.RED:
-                        Energy += redEnemyReward;
+                        Energy += redRecochetEnemyReward;
                         break;
                 }
+            }
+        }
+        else
+        {
+            switch (type)
+            {
+                case EnemyType.BLUE:
+                    Energy += blueEnemyReward;
+                    break;
+                case EnemyType.RED:
+                    Energy += redEnemyReward;
+                    break;
             }
         }
     }

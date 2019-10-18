@@ -79,7 +79,7 @@ public class RedEnemyMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (state == RedEnemyState.CHASE_PLAER)
+        if (state == RedEnemyState.CHASE_PLAER && (other.tag == "Player" || other.tag == "Obstacle"))
         {
             Destroy(this.gameObject);
         }

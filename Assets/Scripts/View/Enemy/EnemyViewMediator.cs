@@ -26,9 +26,9 @@ public class EnemyViewMediator : Mediator
         UltimateUsedSignal.RemoveListener(OnUltimateUsed);
     }
 
-    private void OnEnemyKilled(EnemyType enemyType, bool addPoints, bool afterRecochet)
+    private void OnEnemyKilled(EnemyType enemyType, bool afterRecochet)
     {
-        EnemyKilledSignal.Dispatch(enemyType, addPoints, afterRecochet);
+        EnemyKilledSignal.Dispatch(enemyType, afterRecochet);
     }
 
     private void OnUltimateUsed()

@@ -6,7 +6,7 @@ using System;
 
 public class EnemyView : View
 {
-    public event Action<EnemyType, bool, bool> EnemyKilled;
+    public event Action<EnemyType, bool> EnemyKilled;
     public event Action<EnemyView> Destroyed;
 
     [SerializeField] int fullHealth;   
@@ -45,26 +45,26 @@ public class EnemyView : View
     }
 
     public void TakeDamage(int damage, bool afterRecochet)
-    {
+    {       
         if (Health > 0)
         {
             Health -= damage;
             if (Health == 0) {
-                OnDeath(true, afterRecochet);
+                OnDeath(afterRecochet);
             }
         }
     }
 
     public void OnUltimateUsed()
     {
-        OnDeath(false, false);
+        Destroy(this.gameObject);
     }
 
-    private void OnDeath(bool addPoints, bool afterRecochet)
-    {
+    private void OnDeath(bool afterRecochet)
+    {       
         if (EnemyKilled != null)
         {           
-            EnemyKilled(type, addPoints, afterRecochet);
+            EnemyKilled(type, afterRecochet);
         }
         Destroy(this.gameObject);
     }
