@@ -35,6 +35,7 @@ public class GameContext : MVCSContext
         commandBinder.Bind<StartSignal>().To<StartCommand>();
         commandBinder.Bind<PlayerKilledSignal>().To<GameOverCommand>();
         commandBinder.Bind<EnemyKilledSignal>().To<EnemyKilledCommand>();
+        commandBinder.Bind<RestartButtonSignal>().To<RestartCommand>();
 
         mediationBinder.Bind<InputView>().To<InputViewMediator>();
         mediationBinder.Bind<PlayerView>().To<PlayerViewMediator>();
