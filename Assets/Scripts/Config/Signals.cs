@@ -22,3 +22,9 @@ public class PlayerTeleportedSignal : Signal { }
 public class ShowGameOverSignal : Signal<int> { }
 
 public class RestartButtonSignal : Signal { }
+
+public class PauseButtonSignal : Signal { }
+
+public class ShowPauseSignal : Signal<int> { }
+
+public class PauseClosedSignal : Signal { }

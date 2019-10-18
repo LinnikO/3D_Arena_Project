@@ -31,11 +31,16 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<PlayerTeleportedSignal>().ToSingleton();
         injectionBinder.Bind<ShowGameOverSignal>().ToSingleton();
         injectionBinder.Bind<RestartButtonSignal>().ToSingleton();
+        injectionBinder.Bind<PauseButtonSignal>().ToSingleton();
+        injectionBinder.Bind<ShowPauseSignal>().ToSingleton();
+        injectionBinder.Bind<PauseClosedSignal>().ToSingleton();
 
         commandBinder.Bind<StartSignal>().To<StartCommand>();
         commandBinder.Bind<PlayerKilledSignal>().To<GameOverCommand>();
         commandBinder.Bind<EnemyKilledSignal>().To<EnemyKilledCommand>();
         commandBinder.Bind<RestartButtonSignal>().To<RestartCommand>();
+        commandBinder.Bind<PauseButtonSignal>().To<PauseOnCommand>();
+        commandBinder.Bind<PauseClosedSignal>().To<PauseOffCommand>();
 
         mediationBinder.Bind<InputView>().To<InputViewMediator>();
         mediationBinder.Bind<PlayerView>().To<PlayerViewMediator>();
@@ -43,6 +48,8 @@ public class GameContext : MVCSContext
         mediationBinder.Bind<PlayerMove>().To<PlayerMoveMediator>();
         mediationBinder.Bind<EnemyWeaponController>().To<EnemyWeaponControllerMediator>();
         mediationBinder.Bind<GameOverView>().To<GameOverViewMediator>();
+        mediationBinder.Bind<PauseButtonView>().To<PauseButtonMediator>();
+        mediationBinder.Bind<PauseView>().To<PauseViewMediator>();
     }
 
     protected override void addCoreComponents()
