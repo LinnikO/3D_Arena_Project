@@ -29,8 +29,10 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<PlayerKilledSignal>().ToSingleton();
         injectionBinder.Bind<UltimateUsedSignal>().ToSingleton();
         injectionBinder.Bind<PlayerTeleportedSignal>().ToSingleton();
+        injectionBinder.Bind<ShowGameOverSignal>().ToSingleton();
 
         commandBinder.Bind<StartSignal>().To<StartCommand>();
+        commandBinder.Bind<PlayerKilledSignal>().To<GameOverCommand>();
 
         mediationBinder.Bind<InputView>().To<InputViewMediator>();
         mediationBinder.Bind<PlayerView>().To<PlayerViewMediator>();
