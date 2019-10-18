@@ -14,6 +14,7 @@ public class EnemyView : View
     [SerializeField] WeaponController weaponController;
 
     private int health;
+    private bool destroyed = false;
 
     [Inject]
     public IProjectileFactory ProjectileFactory { get; set; }
@@ -57,7 +58,10 @@ public class EnemyView : View
 
     public void OnUltimateUsed()
     {
-        Destroy(this.gameObject);
+        if (!destroyed)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnDeath(bool afterRecochet)
@@ -72,6 +76,7 @@ public class EnemyView : View
     protected override void OnDestroy()
     {
         base.OnDestroy();
+        destroyed = true;
         if (Destroyed != null) {
             Destroyed(this);
         }
