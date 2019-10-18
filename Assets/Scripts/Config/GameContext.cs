@@ -30,6 +30,7 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<UltimateUsedSignal>().ToSingleton();
         injectionBinder.Bind<PlayerTeleportedSignal>().ToSingleton();
         injectionBinder.Bind<ShowGameOverSignal>().ToSingleton();
+        injectionBinder.Bind<RestartButtonSignal>().ToSingleton();
 
         commandBinder.Bind<StartSignal>().To<StartCommand>();
         commandBinder.Bind<PlayerKilledSignal>().To<GameOverCommand>();
@@ -40,6 +41,7 @@ public class GameContext : MVCSContext
         mediationBinder.Bind<EnemyView>().To<EnemyViewMediator>();
         mediationBinder.Bind<PlayerMove>().To<PlayerMoveMediator>();
         mediationBinder.Bind<EnemyWeaponController>().To<EnemyWeaponControllerMediator>();
+        mediationBinder.Bind<GameOverView>().To<GameOverViewMediator>();
     }
 
     protected override void addCoreComponents()

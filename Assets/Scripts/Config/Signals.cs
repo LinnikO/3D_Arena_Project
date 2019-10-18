@@ -20,3 +20,5 @@ public class UltimateUsedSignal : Signal { }
 public class PlayerTeleportedSignal : Signal { }
 
 public class ShowGameOverSignal : Signal<int> { }
+
+public class RestartButtonSignal : Signal { }
