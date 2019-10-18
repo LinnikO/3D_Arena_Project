@@ -28,12 +28,15 @@ public class GameContext : MVCSContext
         injectionBinder.Bind<EnemyKilledSignal>().ToSingleton();
         injectionBinder.Bind<PlayerKilledSignal>().ToSingleton();
         injectionBinder.Bind<UltimateUsedSignal>().ToSingleton();
+        injectionBinder.Bind<PlayerTeleportedSignal>().ToSingleton();
 
         commandBinder.Bind<StartSignal>().To<StartCommand>();
 
         mediationBinder.Bind<InputView>().To<InputViewMediator>();
         mediationBinder.Bind<PlayerView>().To<PlayerViewMediator>();
         mediationBinder.Bind<EnemyView>().To<EnemyViewMediator>();
+        mediationBinder.Bind<PlayerMove>().To<PlayerMoveMediator>();
+        mediationBinder.Bind<EnemyWeaponController>().To<EnemyWeaponControllerMediator>();
     }
 
     protected override void addCoreComponents()

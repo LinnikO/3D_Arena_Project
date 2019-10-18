@@ -1,8 +1,11 @@
 ﻿using strange.extensions.mediation.impl;
 using UnityEngine;
+using System;
 
 public class PlayerMove : View
 {
+    public event Action PlayerTeleported;
+
     [SerializeField] float speed;
     [SerializeField] CharacterController characterController;
 
@@ -31,6 +34,13 @@ public class PlayerMove : View
         if ((player2DPosition - center2DPosition).magnitude > GameField.GameFieldInfo.radius) {
             Vector3 teleportPosition = GameField.FindPlayerTeleportPosition();
             transform.position = new Vector3(teleportPosition.x, transform.position.y, teleportPosition.z);
+            OnPlayerTeleported();
+        }
+    }
+
+    private void OnPlayerTeleported() {
+        if (PlayerTeleported != null) {
+            PlayerTeleported();
         }
     }
 }

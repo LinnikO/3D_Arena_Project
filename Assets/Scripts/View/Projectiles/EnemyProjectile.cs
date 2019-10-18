@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class EnemyProjectile : Projectile
 {
-    private Transform target;
+    private Transform targetTransfor;
+    private Vector3 targetPoint;
+    private EnemyWeaponController weaponController;
 
-    public void Launch(Transform target) {
-        this.target = target;
+    public void Launch(Transform target, EnemyWeaponController weaponController) {
+        this.targetTransfor = target;
+        this.weaponController = weaponController;
+        this.weaponController.PlayerTeleported += OnPlayerTeleported;
+    }
+
+    public void OnPlayerTeleported() {     
+        targetTransfor = null;
     }
 
     private void Update()
     {
-        if (target != null) {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        if (targetTransfor != null)
+        {
+            targetPoint = targetTransfor.position;   
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, targetPoint, speed * Time.deltaTime);
+
+        if (targetTransfor == null && transform.position == targetPoint)
+        {
+            Destroy(this.gameObject);
         }
     }
 
@@ -31,4 +47,9 @@ public class EnemyProjectile : Projectile
         }
     }
 
+
+    private void OnDestroy()
+    {
+        weaponController.PlayerTeleported -= OnPlayerTeleported;
+    }
 }

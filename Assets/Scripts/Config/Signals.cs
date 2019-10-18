@@ -16,3 +16,5 @@ public class EnemyKilledSignal : Signal<EnemyType, bool, bool> { }
 public class PlayerKilledSignal : Signal { }
 
 public class UltimateUsedSignal : Signal { }
+
+public class PlayerTeleportedSignal : Signal { }
