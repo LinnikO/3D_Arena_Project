@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upSpeed: 1
-  chaseSpeed: 5
-  upDistance: 3
+  chaseSpeed: 4
+  upDistance: 2
   idleTime: 2
   destroyTime: 3
 --- !u!114 &2554769258567960355

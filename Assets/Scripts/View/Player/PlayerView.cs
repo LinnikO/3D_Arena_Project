@@ -24,9 +24,6 @@ public class PlayerView : View
     private int energy;
     private bool fire;
 
-    [Inject]
-    public IProjectileFactory ProjectileFactory { get; set; }
-
     public int FullHealth {
         get { return fullHealth; }
     }
