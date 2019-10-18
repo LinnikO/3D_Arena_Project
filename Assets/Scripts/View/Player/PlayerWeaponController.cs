@@ -14,7 +14,7 @@ public class PlayerWeaponController : WeaponController
     }
 
     private bool ShoudProjectileRecochet() {
-        float chance = 0.15f + (player.FullHealth - (float)player.Health / player.FullHealth);
+        float chance = 0.1f + (1f - (float)player.Health / player.FullHealth);        
         return Random.Range(0, 1f) < chance;
     }
 }

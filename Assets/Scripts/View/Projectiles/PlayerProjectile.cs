@@ -29,13 +29,11 @@ public class PlayerProjectile : Projectile
         if (other.tag == "Enemy")
         {
             EnemyView enemy = other.transform.GetComponent<EnemyView>();
-
             enemy.TakeDamage(damage, afterRecochet);
-            if (recochet)
+
+            if (enemy.Health == 0 && recochet)
             {
-                recochet = false;
-                afterRecochet = true;
-                MoveToNearestEnemy(enemy);
+                OnRecochet(enemy);
             }
             else
             {
@@ -45,6 +43,16 @@ public class PlayerProjectile : Projectile
         else if (other.tag == "Obstacle")
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    private void OnRecochet(EnemyView enemy)
+    {
+        recochet = false;
+        afterRecochet = true;
+        if (Random.Range(0f, 1f) > 0.5f)
+        {
+            MoveToNearestEnemy(enemy);
         }
     }
 
